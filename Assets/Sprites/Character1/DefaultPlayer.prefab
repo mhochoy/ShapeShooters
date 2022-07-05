@@ -82,9 +82,13 @@ GameObject:
   - component: {fileID: 148541207835626863}
   - component: {fileID: 148541207835626832}
   - component: {fileID: 148541207835626860}
+  - component: {fileID: 431089646}
+  - component: {fileID: 431089647}
+  - component: {fileID: 431089653}
+  - component: {fileID: 7030257107869873361}
   m_Layer: 0
   m_Name: DefaultPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,6 +225,176 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &431089646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148541207835626833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f978bef6f1dc84e2db1765c2acc7416a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI: 0
+--- !u!114 &431089647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148541207835626833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: e9c326c05c3df4f48a51b6b2a51015cf, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 431089646}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b36d72a3-4120-4c7b-acdd-e61436bf0582
+    m_ActionName: GamePadMap/Move
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 431089646}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bc719f27-17dd-4a8e-81d9-27981ab0ab53
+    m_ActionName: GamePadMap/Look
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 431089646}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0e51aebc-6124-48aa-b5bd-4c09aa42fe3c
+    m_ActionName: GamePadMap/Fire
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 431089646}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Block
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8af43b3e-0992-4a72-9db1-2b2187d954f6
+    m_ActionName: GamePadMap/Guard
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: General
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &431089653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148541207835626833}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70858324e9d41468f82db27087117443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e7854634-5247-4792-9842-b1e38b92a2f0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  LookAction:
+    m_Name: Look
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e0882db6-a22c-4f89-890e-bbc2a3487ccf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  BlockAction:
+    m_Name: Block
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f6eccd4d-b554-4d60-b30c-e7ff93fdca28
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  FireAction:
+    m_Name: Fire
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 818fc01a-b224-4106-8f9d-1ae47d7a76be
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+--- !u!114 &7030257107869873361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148541207835626833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6a120740f2445dc80d47f53329820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0.5
+  canvasObj: {fileID: 0}
+  HealthComponent: {fileID: 1710075747684128400, guid: 2bb07dbcc49fd4754b0b1f1cf3496860, type: 3}
 --- !u!1 &148541208883603610
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +437,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6213221686583809813, guid: 2b49ff7a803eafd45b40cf4e83a92d41, type: 3}
       propertyPath: Auto
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6213221686583809814, guid: 2b49ff7a803eafd45b40cf4e83a92d41, type: 3}
       propertyPath: m_RootOrder
@@ -338,12 +512,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: draw
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: weapon
       value: 
       objectReference: {fileID: 148541209038764491}
+    - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
+      propertyPath: ShieldObject
+      value: 
+      objectReference: {fileID: 148541207859154462}
     - target: {fileID: 8945930619894634619, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -390,12 +568,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945930620077625754, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
 --- !u!4 &148541207774726143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8945930619894634619, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
+  m_PrefabInstance: {fileID: 9091058943575695236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &148541207859154462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8945930620077625754, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
   m_PrefabInstance: {fileID: 9091058943575695236}
   m_PrefabAsset: {fileID: 0}

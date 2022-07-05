@@ -14,34 +14,19 @@ public class Shoot : MonoBehaviour
     [SerializeField] int speed;
     float last_fired;
     
-    // Update is called once per frame
-    void Update()
-    {
-        if (!AI) {
-            if (Auto) {
-                float shoot = Gamepad.current.rightShoulder.ReadValue();
+    public void Update() {
+        last_fired += Time.deltaTime;
+    }
 
-                last_fired += Time.deltaTime;
-                
-                if (last_fired > fireRate && shoot > 0f) {
-                    last_fired = 0;
-                    ShootBullet();
-                }
-            }
-            else {
-                if (Gamepad.current.rightShoulder.wasPressedThisFrame) {
-                    ShootBullet();
-                }
-            }
+    public void Fire() {
+        if (last_fired > fireRate) {
+            last_fired = 0;
+            ShootBullet();
         }
-        else {
-            last_fired += Time.deltaTime;
-                
-            if (last_fired > fireRate) {
-                last_fired = 0;
-                ShootBullet();
-            }
-        }
+    }
+
+    public void FireBullet() {
+        ShootBullet();
     }
 
     void ShootBullet() {

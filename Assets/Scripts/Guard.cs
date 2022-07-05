@@ -9,30 +9,39 @@ public class Guard : MonoBehaviour
     [SerializeField] private bool draw;
     [SerializeField] private GameObject weapon;
 
-    void Update()
-    {
-        float guard = Gamepad.current.leftShoulder.ReadValue();
-        if (!draw) {
-            if (guard > 0.00f) {
-                ShieldObject.SetActive(true);
-                weapon.SetActive(false);
+    public void Block(bool button_pressed) {
+        if (button_pressed) {
+            if (draw) {
+                Draw();
             }
             else {
-                ShieldObject.SetActive(false);
-                weapon.SetActive(true);
+                SpawnShield();
             }
         }
         else {
-            if (guard > 0.00f) {
-                ShieldObject.SetActive(true);
-                weapon.SetActive(false);
-                GameObject shape = Instantiate(ShieldObject, weapon.transform.position, weapon.transform.rotation);
-            }
-            else {
-                ShieldObject.SetActive(false);
-                weapon.SetActive(true);
-                // Nothing
-            }
+            StopShield();
+            KillDraw();
         }
+    }
+
+    void SpawnShield() {
+        ShieldObject.SetActive(true);
+        weapon.SetActive(false);
+    }
+
+    void StopShield() {
+        ShieldObject.SetActive(false);
+        weapon.SetActive(true);
+    }
+
+    void Draw() {
+        ShieldObject.SetActive(true);
+        weapon.SetActive(false);
+        GameObject shape = Instantiate(ShieldObject, weapon.transform.position, weapon.transform.rotation);
+    }
+
+    void KillDraw() {
+        ShieldObject.SetActive(false);
+        weapon.SetActive(true);
     }
 }
