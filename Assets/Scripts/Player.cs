@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
         TryGetComponent<PlayerInput>(out playerInput);
         TryGetComponent<InputManager>(out input);
         if (!playerInput) {
-            input.enabled = true;
+            ToggleInput(true);
         }
         else {
-            input.enabled = false;
+            ToggleInput(false);
         }
         TryGetComponent<Movement>(out movement);
         aiming = GetComponentInChildren<Aiming>();
@@ -36,15 +36,31 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void ToggleInput(bool decision) {
+        if (input) {
+            input.enabled = decision;
+        }
+    }
+
     public void Update() {
-        if (shoot) {
-            FireInternal();
+        if (tag == "Player") {
+            if (aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00f) {
+                transform.localScale = new Vector2(-1, 1);
+            }
+            else {
+                transform.localScale = new Vector2(1, 1);
+            }
         }
-        if (block) {
-            guard.Block(true);
-        }
-        else {
-            guard.Block(false);
+        if (!AI && !input.enabled) {
+            if (shoot) {
+                FireInternal();
+            }
+            if (block) {
+                guard.Block(true);
+            }
+            else {
+                guard.Block(false);
+            }
         }
         if (!AI && input.enabled) {
             var _movement = input.MoveAction.ReadValue<Vector2>();
@@ -64,10 +80,12 @@ public class Player : MonoBehaviour
                 weapon.Fire();
             }
         }
-        else if (AI) {
-            Move();
-            Look();
-            weapon.Fire();
+        if (AI) {
+            if (aiming.LockedOntoPlayer()) {
+                Move();
+                Look();
+                weapon.Fire();
+            }
         }
     }
 
@@ -139,7 +157,7 @@ public class Player : MonoBehaviour
 
         col.gameObject.TryGetComponent<Health>(out health);
 
-        if (health && health.isDrawing && AI) {
+        if (health && health.isDrawing) {
             health.Damage((int)rb.mass);
         }
     }

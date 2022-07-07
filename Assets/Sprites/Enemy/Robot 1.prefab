@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8104226412885593022}
   - component: {fileID: 8104226412885593023}
-  - component: {fileID: 8104226412885593017}
   - component: {fileID: 8104226412885593020}
   - component: {fileID: 8104226412885593021}
   - component: {fileID: 8104226412885592994}
+  - component: {fileID: 2114141516}
+  - component: {fileID: 2114141517}
   m_Layer: 6
   m_Name: Robot 1
   m_TagString: Untagged
@@ -89,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8104226412885593017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8104226412885592995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b786a21c4a142469e521c7ccff4f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 1
 --- !u!50 &8104226412885593020
 Rigidbody2D:
   serializedVersion: 4
@@ -162,8 +149,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7400d641a5d45ad48ae3acc941445604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
+  health: 500
   isDrawing: 0
+--- !u!114 &2114141516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104226412885592995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f978bef6f1dc84e2db1765c2acc7416a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI: 1
+--- !u!114 &2114141517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104226412885592995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d310c3e19501c046a050ce538749904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggresive: 1
+  speed: 0.39
 --- !u!1 &8104226413101707766
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,9 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b3f9f035209bd43a307ac4d89ce2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI: 1
-  player: {fileID: 0}
   pivot: {fileID: 8104226414145280247}
+  LockOnDistance: 10
 --- !u!50 &8104226414215868013
 Rigidbody2D:
   serializedVersion: 4

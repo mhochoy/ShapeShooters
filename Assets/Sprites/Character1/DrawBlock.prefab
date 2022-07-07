@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1693752219445109700}
   - component: {fileID: 7508439293713161402}
   - component: {fileID: 798096767370656365}
+  - component: {fileID: 62962008566953282}
   m_Layer: 0
   m_Name: DrawBlock
   m_TagString: Untagged
@@ -126,3 +127,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 15
   isDrawing: 1
+--- !u!114 &62962008566953282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307504811397143085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89405c263a2a4c0ca155a224966a5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyTime: 8
+  On: 1

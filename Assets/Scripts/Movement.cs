@@ -5,15 +5,22 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public bool aggresive;
     Transform player;
     [Range(0,10)]
-    [SerializeField] private int speed;
+    [SerializeField] private float speed;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update() {
+        GameObject _player = GameObject.FindGameObjectWithTag("Player");
+        if (_player && player == null) {
+            player = _player.transform;
+        }
     }
 
     public void Move(float x, float y) {
@@ -23,7 +30,12 @@ public class Movement : MonoBehaviour
     }
 
     public void Move() {
-        Vector2 relative = player.position - transform.position;
+        Vector2 relative;
+        if (aggresive) {
+            relative = player.position - transform.position;
+        } else {
+            relative = player.position - transform.right;
+        }
         float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }

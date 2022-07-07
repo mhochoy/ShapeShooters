@@ -6,28 +6,49 @@ using UnityEngine.InputSystem;
 public class Aiming : MonoBehaviour
 {
     
-    Transform player;
+    protected Transform player;
     [SerializeField] private Transform pivot;
+    [SerializeField] private float LockOnDistance;
 
     void Start() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
+    }
+
+    void Update() {
+        GameObject _player = GameObject.FindGameObjectWithTag("Player");
+        if (_player) {
+            player = _player.transform;
+        }
     }
 
     public void Aim(float x, float y) {
-        if (x == 0.00f && y == 0.00f) {
-            pivot.gameObject.SetActive(false);
-        }
-        else {
-            pivot.gameObject.SetActive(true);
-        }
+        // if (x == 0.00f && y == 0.00f) {
+        //     pivot.gameObject.SetActive(false);
+        // }
+        // else {
+        //     pivot.gameObject.SetActive(true);
+        // }
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg - 90f;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public void Aim() {
-        Vector2 relative = player.position - transform.position;
-        float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (player) {
+            Vector2 relative = player.position - transform.position;
+            float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
+
+    public bool LockedOntoPlayer() {
+        // If player is within attacking distance of me, I am locked on
+        if (player) {
+            if (Vector2.Distance(transform.position, player.position) < LockOnDistance) return true;
+            else return false;
+        }
+        else {
+            return false;
+        }
     }
 }
