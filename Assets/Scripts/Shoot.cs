@@ -39,4 +39,12 @@ public class Shoot : MonoBehaviour
         }
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * speed, ForceMode2D.Impulse);
     }
+
+    public Vector2 GetFirePoint() {
+        return FirePoint.position;
+    }
+
+    public Vector2 GetFireDirection() {
+        return FirePoint.forward;
+    }
 }

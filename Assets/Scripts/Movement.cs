@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     public void Move(float x, float y) {
         Vector2 movement = new Vector2(x, y);
 
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
     }
 
     public void Move() {

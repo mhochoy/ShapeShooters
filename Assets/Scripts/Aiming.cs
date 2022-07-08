@@ -45,4 +45,12 @@ public class Aiming : MonoBehaviour
             return false;
         }
     }
+
+    public float GetLockOnDistance() {
+        return LockOnDistance;
+    }
+
+    public float GetDistanceFromPlayer() {
+        return Vector2.Distance(transform.position, player.position);
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -13,10 +14,9 @@ public class Player : MonoBehaviour
     Shoot weapon;
     Aiming aiming;
     Rigidbody2D rb;
-
     bool block;
     bool shoot;
-
+    float area_zoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,10 +45,10 @@ public class Player : MonoBehaviour
     public void Update() {
         if (tag == "Player") {
             if (aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00f) {
-                transform.localScale = new Vector2(-1, 1);
+                aiming.transform.localScale = new Vector2(-1, 1);
             }
             else if (aiming.transform.rotation.z < 0.00f && aiming.transform.rotation.z > -180.00f) {
-                transform.localScale = new Vector2(1, 1);
+                aiming.transform.localScale = new Vector2(1, 1);
             }
             else {
                 // Nothing
@@ -84,10 +84,18 @@ public class Player : MonoBehaviour
             }
         }
         if (AI) {
+            RaycastHit2D hit = Physics2D.Raycast(weapon.GetFirePoint(), weapon.transform.up, 999);
+            Player player;
+            if (hit) {
+                hit.transform.gameObject.TryGetComponent<Player>(out player);
+                if (player && !player.AI) {
+                    weapon.Fire();
+                }
+            }            
+
             if (aiming.LockedOntoPlayer()) {
                 Move();
                 Look();
-                weapon.Fire();
             }
         }
     }
@@ -150,13 +158,30 @@ public class Player : MonoBehaviour
         }
     }
 
-     void OnCollisionStay2D(Collision2D col) {
+    void OnCollisionStay2D(Collision2D col) {
         Health health;
 
         col.gameObject.TryGetComponent<Health>(out health);
 
         if (health && health.isDrawing) {
             health.Damage((int)rb.mass);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D trigger) {
+        AreaTransitions areaTransitions;
+        if (trigger.CompareTag("Area")) {
+            trigger.TryGetComponent<AreaTransitions>(out areaTransitions);
+
+            if (areaTransitions) {
+                area_zoom = areaTransitions.AreaZoomSize;
+            }
+        }
+    }
+
+    void OnDisable() {
+        if (!AI) {
+            playerInput.enabled = false;
         }
     }
 }
