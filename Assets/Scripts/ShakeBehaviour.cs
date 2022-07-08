@@ -11,7 +11,7 @@ public class ShakeBehaviour : MonoBehaviour
     private float shakeDuration = 0.20f;
     
     // A measure of magnitude for the shake. Tweak based on your preference
-    private float shakeMagnitude = 0.1f;
+    private float shakeMagnitude = 0.075f;
     
     // A measure of how quickly the shake effect should evaporate
     private float dampingSpeed = 8f;

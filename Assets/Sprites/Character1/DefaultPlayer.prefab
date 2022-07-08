@@ -176,6 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isDrawing: 0
+  HitEffectObj: {fileID: 0}
+  DeathEffectObj: {fileID: 0}
 --- !u!114 &148541207835626863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d310c3e19501c046a050ce538749904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggresive: 0
   speed: 5
 --- !u!58 &148541207835626832
 CircleCollider2D:
@@ -518,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: draw
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: weapon
@@ -527,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: ShieldObject
       value: 
-      objectReference: {fileID: 148541207859154462}
+      objectReference: {fileID: 3307504811397143085, guid: 72c2e869ed0c0e8459b4798842a0bff5, type: 3}
     - target: {fileID: 8945930619894634619, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -581,10 +582,5 @@ PrefabInstance:
 --- !u!4 &148541207774726143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8945930619894634619, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
-  m_PrefabInstance: {fileID: 9091058943575695236}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &148541207859154462 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8945930620077625754, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
   m_PrefabInstance: {fileID: 9091058943575695236}
   m_PrefabAsset: {fileID: 0}
