@@ -47,8 +47,11 @@ public class Player : MonoBehaviour
             if (aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00f) {
                 transform.localScale = new Vector2(-1, 1);
             }
-            else {
+            else if (aiming.transform.rotation.z < 0.00f && aiming.transform.rotation.z > -180.00f) {
                 transform.localScale = new Vector2(1, 1);
+            }
+            else {
+                // Nothing
             }
         }
         if (!AI && !input.enabled) {
@@ -137,11 +140,6 @@ public class Player : MonoBehaviour
     }
 
     void FireInternal() {
-        // bool WeaponIsSemiAutomatic = context.action.WasPressedThisFrame() && !weapon.Auto;
-        // bool WeaponIsAutomatic = context.action.IsPressed() && weapon.Auto;
-        // if (WeaponIsSemiAutomatic) {
-        //     weapon.FireBullet();
-        // }
         weapon.Fire();
     }
 

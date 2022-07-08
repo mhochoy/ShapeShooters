@@ -22,12 +22,6 @@ public class Aiming : MonoBehaviour
     }
 
     public void Aim(float x, float y) {
-        // if (x == 0.00f && y == 0.00f) {
-        //     pivot.gameObject.SetActive(false);
-        // }
-        // else {
-        //     pivot.gameObject.SetActive(true);
-        // }
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg - 90f;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

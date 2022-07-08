@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public bool aggresive;
     Transform player;
     [Range(0,10)]
     [SerializeField] private float speed;
@@ -30,12 +29,7 @@ public class Movement : MonoBehaviour
     }
 
     public void Move() {
-        Vector2 relative;
-        if (aggresive) {
-            relative = player.position - transform.position;
-        } else {
-            relative = player.position - transform.right;
-        }
+        Vector2 relative = player.position - transform.position;
         float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
