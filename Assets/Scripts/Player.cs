@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
             float DistanceFromPlayer = 999;      
             if (aiming.LockedOntoPlayer()) { 
                 RaycastHit2D hit = Physics2D.Raycast(weapon.GetFirePoint(), weapon.transform.up, DistanceFromPlayer);
+                DistanceFromPlayer = Vector2.Distance(weapon.GetFirePoint(), hit.point); 
                 if (hit) {
                     if (hit.transform.gameObject.tag == "Player") { 
                         weapon.Fire();
