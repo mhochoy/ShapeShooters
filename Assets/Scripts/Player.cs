@@ -84,16 +84,15 @@ public class Player : MonoBehaviour
             }
         }
         if (AI) {
-            RaycastHit2D hit = Physics2D.Raycast(weapon.GetFirePoint(), weapon.transform.up, 999);
             Player player;
-            if (hit) {
-                hit.transform.gameObject.TryGetComponent<Player>(out player);
-                if (player && !player.AI) {
-                    weapon.Fire();
-                }
-            }            
-
-            if (aiming.LockedOntoPlayer()) {
+            float DistanceFromPlayer = 999;      
+            if (aiming.LockedOntoPlayer()) { 
+                RaycastHit2D hit = Physics2D.Raycast(weapon.GetFirePoint(), weapon.transform.up, DistanceFromPlayer);
+                if (hit) {
+                    if (hit.transform.gameObject.tag == "Player") { 
+                        weapon.Fire();
+                    }
+                }   
                 Move();
                 Look();
             }

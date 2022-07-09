@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     Transform player;
-    [Range(0,10)]
+    [Range(0,50)]
     [SerializeField] private float speed;
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     public void Move(float x, float y) {
         Vector2 movement = new Vector2(x, y);
 
-        rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
     public void Move() {
