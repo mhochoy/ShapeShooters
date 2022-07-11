@@ -153,6 +153,7 @@ MonoBehaviour:
   health: 500
   isDrawing: 0
   Indestructible: 0
+  HitColor: {r: 0.7169812, g: 0.4024564, b: 0.4024564, a: 1}
   HitEffectObj: {fileID: 1813607469735044454}
   DeathEffectObj: {fileID: 5037161872661044929, guid: 2694d130fe4c54f71ada11b7735c3865, type: 3}
 --- !u!114 &2114141516

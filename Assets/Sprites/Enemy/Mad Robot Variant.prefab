@@ -15,6 +15,18 @@ PrefabInstance:
       propertyPath: health
       value: 750
       objectReference: {fileID: 0}
+    - target: {fileID: 8104226412885592994, guid: 7e803cd74db68f6448f7e61d0c97e705, type: 3}
+      propertyPath: HitColor.b
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104226412885592994, guid: 7e803cd74db68f6448f7e61d0c97e705, type: 3}
+      propertyPath: HitColor.g
+      value: 0.5523106
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104226412885592994, guid: 7e803cd74db68f6448f7e61d0c97e705, type: 3}
+      propertyPath: HitColor.r
+      value: 0.04405483
+      objectReference: {fileID: 0}
     - target: {fileID: 8104226412885592995, guid: 7e803cd74db68f6448f7e61d0c97e705, type: 3}
       propertyPath: m_Name
       value: Mad Robot Variant

@@ -84,6 +84,22 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: HitColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: HitColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: HitColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: HitColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: HitEffectObj
       value: 
       objectReference: {fileID: 3150363289457295362, guid: 6ef9c062492a54b6f9d7759b88265899, type: 3}

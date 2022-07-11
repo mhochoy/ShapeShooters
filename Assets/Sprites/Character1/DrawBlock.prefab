@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 15
   isDrawing: 1
+  Indestructible: 0
+  HitColor: {r: 0.9716981, g: 0.8758055, b: 0.7471075, a: 1}
   HitEffectObj: {fileID: 0}
   DeathEffectObj: {fileID: 0}
 --- !u!114 &62962008566953282
