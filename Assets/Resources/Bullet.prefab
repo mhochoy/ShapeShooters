@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 3404936550673770694}
   - component: {fileID: 9120160587556435632}
   - component: {fileID: -1679316495476523010}
+  - component: {fileID: 7237019517186597741}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 25
   speed: 4
+  HitSounds: []
 --- !u!212 &4718884745027570970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -153,3 +155,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7237019517186597741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979236388940346183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7400d641a5d45ad48ae3acc941445604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  isDrawing: 1
+  HitEffectObj: {fileID: 0}
+  DeathEffectObj: {fileID: 0}

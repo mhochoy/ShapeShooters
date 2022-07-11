@@ -103,6 +103,13 @@ public class Player : MonoBehaviour
     public void Move(InputAction.CallbackContext context) {
         var _movement = context.ReadValue<Vector2>();
         if (movement) {
+            bool ThereIsNoInput = (_movement.x == 0f && _movement.y == 0f);
+            if (ThereIsNoInput) {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+            else {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
             movement.Move(_movement.x, _movement.y);
         }
     }

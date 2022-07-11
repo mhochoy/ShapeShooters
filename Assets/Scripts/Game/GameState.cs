@@ -7,24 +7,19 @@ using Cinemachine;
 public class GameState : MonoBehaviour
 {
     public List<Area> areas;
+    public List<Prize> prizes;
     public CinemachineVirtualCamera camera;
-    public CinemachineVirtualCamera target_camera;
-    public CinemachineTargetGroup TargetGroup;
-    [Range(1, 10)]
-    public float LookDistance;
-    List<GameObject> AllEnemies;
-    GameObject closest_enemy;
-    // Start is called before the first frame update
-    void Start()
-    {
-        foreach (Area _area in areas) {    
-            //     
-        }
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        bool PrizesAreCollected = prizes.TrueForAll( ( Prize prize ) => { return prize.collected; } );
+        bool AreasIsCleared = areas.TrueForAll( ( Area area ) => { return area.cleared; } );
+        bool LevelIsCleared = PrizesAreCollected && AreasIsCleared; 
+
+        if (LevelIsCleared) {
+            // End Level
+            Debug.Log("Level has been cleared!");
+        }
         try {
             GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
             camera.m_Follow = player.transform;

@@ -52,6 +52,15 @@ public class Health : MonoBehaviour
         if (DeathEffect) {
             GameObject _effect = Instantiate(DeathEffectObj, transform.position, transform.rotation);
         }
+        if (isDrawing) {
+            Bullet bullet;
+            TryGetComponent<Bullet>(out bullet);
+
+            if (bullet) {
+                bullet.Disable();
+            }
+            return;
+        }
         gameObject.SetActive(false);
     }
 }

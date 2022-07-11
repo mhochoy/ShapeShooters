@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 62962008566953282}
   m_Layer: 0
   m_Name: DrawBlock
-  m_TagString: Untagged
+  m_TagString: DefenseBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

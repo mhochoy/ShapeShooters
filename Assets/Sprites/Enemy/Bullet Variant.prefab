@@ -219,7 +219,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    m_ImpulseDuration: 0.075
+    m_ImpulseDuration: 0.05
     m_ImpulseType: 0
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 0}
@@ -250,11 +250,27 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -0.5, z: 0}
+  m_DefaultVelocity: {x: 0, y: -0.25, z: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_IgnoreTag: 
   m_UseImpactDirection: 1
   m_ScaleImpactWithMass: 0
-  m_ScaleImpactWithSpeed: 1
+  m_ScaleImpactWithSpeed: 0
+--- !u!114 &8391763772812420754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053449912322589718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7400d641a5d45ad48ae3acc941445604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  isDrawing: 0
+  HitEffectObj: {fileID: 0}
+  DeathEffectObj: {fileID: 0}

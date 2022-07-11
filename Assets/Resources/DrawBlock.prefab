@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8307452221316481872}
   m_Layer: 0
   m_Name: DrawBlock
-  m_TagString: Untagged
+  m_TagString: DefenseBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -126,3 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   isDrawing: 1
+  HitEffectObj: {fileID: 0}
+  DeathEffectObj: {fileID: 0}

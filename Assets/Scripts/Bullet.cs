@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     AudioSource _Audio;
     GameObject shakeObj;
+    Health health;
     void Start()
     {
         shakeObj = Camera.main.gameObject;
@@ -19,30 +20,42 @@ public class Bullet : MonoBehaviour
         Collider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         _Audio = GetComponent<AudioSource>();
+        TryGetComponent<Health>(out health);
     }
 
-    void Update() {       
+    void Update() {
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        Health health;
+        Health _health;
+        Bullet _bullet;
+        string collision_tag = col.gameObject.tag;
+        col.gameObject.TryGetComponent<Health>(out _health);
+        col.gameObject.TryGetComponent<Bullet>(out _bullet);
 
-        col.gameObject.TryGetComponent<Health>(out health);
-
-        if (health) {
-            int decision = Random.Range(0, HitSounds.Count);
-            _Audio.clip = HitSounds[decision];
-            _Audio.Play();
-            health.Damage(damage, col.GetContact(0).point);
+        if (_health) {
+            bool DisableConditionsAreMet = health.health < _health.health || col.transform.tag == "Player" || col.transform.tag == "DefenseBlock";
+            PlayRandomHitSound();
+            _health.Damage(damage, col.GetContact(0).point);
+            if (DisableConditionsAreMet) {
+                Disable();
+            }
             shakeObj.SendMessage("TriggerShake");
         }
-        
-        Disable();
+        else {
+            Disable();
+        }
     }
 
-    void Disable() {
+    public void Disable() {
         Sprite.enabled = false;
         Collider.enabled = false;
         rb.simulated = false;
+    }
+
+    void PlayRandomHitSound() {
+        int decision = Random.Range(0, HitSounds.Count);
+        _Audio.clip = HitSounds[decision];
+        _Audio.Play();
     }
 }

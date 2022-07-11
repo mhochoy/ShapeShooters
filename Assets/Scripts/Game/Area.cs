@@ -5,26 +5,33 @@ using UnityEngine;
 public class Area : MonoBehaviour
 {
     public List<GameObject> enemies;
-    Animator animator;
+    public bool cleared {get; private set;}
+    public GameObject Door;
+    Animator _DoorAnimator;
+    List<GameObject> defeated_enemies = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        _DoorAnimator = Door.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        int defeated_enemies = 0;
         foreach (GameObject enemy in enemies) {
-            if (!enemy.activeInHierarchy) defeated_enemies++;
+            if (!enemy.activeInHierarchy && !defeated_enemies.Contains(enemy)) defeated_enemies.Add(enemy);
         }
 
-        if (defeated_enemies == enemies.Count) {
-            if (!animator.GetBool("open")) {
-                animator.SetBool("open", true);
-                animator.Play("DoorOpen");
-            }
+        if (defeated_enemies.Count > 0 && (defeated_enemies.Count == enemies.Count)) {
+            OpenAreaDoor();
+        }
+    }
+
+    void OpenAreaDoor() {
+        if (!_DoorAnimator.GetBool("open")) {
+            _DoorAnimator.SetBool("open", true);
+            _DoorAnimator.Play("DoorOpen");
+            cleared = true;
         }
     }
 }
