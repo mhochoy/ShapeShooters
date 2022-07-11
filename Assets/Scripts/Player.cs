@@ -7,6 +7,7 @@ using Cinemachine;
 public class Player : MonoBehaviour
 {
     public bool AI;
+    Health health;
     PlayerInput playerInput;
     InputManager input;
     Movement movement;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TryGetComponent<Health>(out health);
         TryGetComponent<PlayerInput>(out playerInput);
         TryGetComponent<InputManager>(out input);
         if (!playerInput) {
@@ -43,18 +45,22 @@ public class Player : MonoBehaviour
     }
 
     public void Update() {
+        bool PlayerIsUsingRawInput = !AI && input.enabled;
+        bool PlayerIsUsingInputManager = !AI && !input.enabled;
         if (tag == "Player") {
-            if (aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00f) {
+            bool LookingLeft = aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00;
+            bool LookingRight = aiming.transform.rotation.z < 0.00f && aiming.transform.rotation.z > -180.00f;
+            if (LookingLeft) {
                 aiming.transform.localScale = new Vector2(-1, 1);
             }
-            else if (aiming.transform.rotation.z < 0.00f && aiming.transform.rotation.z > -180.00f) {
+            else if (LookingRight) {
                 aiming.transform.localScale = new Vector2(1, 1);
             }
             else {
                 // Nothing
             }
         }
-        if (!AI && !input.enabled) {
+        if (PlayerIsUsingInputManager) {
             if (shoot) {
                 FireInternal();
             }
@@ -65,7 +71,7 @@ public class Player : MonoBehaviour
                 guard.Block(false);
             }
         }
-        if (!AI && input.enabled) {
+        if (PlayerIsUsingRawInput) {
             var _movement = input.MoveAction.ReadValue<Vector2>();
             var _look = input.LookAction.ReadValue<Vector2>();
             // Move + Look
@@ -110,7 +116,6 @@ public class Player : MonoBehaviour
             else {
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
-            //movement.Move(_movement.x, _movement.y);
             movement.x = _movement.x;
             movement.y = _movement.y;
         }
@@ -119,7 +124,8 @@ public class Player : MonoBehaviour
     public void Move(Vector2 _movement) 
     {
         if (movement) {
-            movement.Move(_movement.x, _movement.y);
+            movement.x = _movement.x;
+            movement.y = _movement.y;
         }
         
     }
@@ -178,12 +184,21 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D trigger) {
-        AreaTransitions areaTransitions;
-        if (trigger.CompareTag("Area")) {
-            trigger.TryGetComponent<AreaTransitions>(out areaTransitions);
+        Prize prize;
 
-            if (areaTransitions) {
-                area_zoom = areaTransitions.AreaZoomSize;
+        trigger.gameObject.TryGetComponent<Prize>(out prize);
+
+        if (prize) {
+            switch (prize.type) {
+                case PrizeType.Health:
+                    health.Give(prize.value);
+                    prize.CollectPrize();
+                    break;
+                case PrizeType.Powerup:
+                    break;
+                default:
+                    prize.CollectPrize();
+                    break;
             }
         }
     }

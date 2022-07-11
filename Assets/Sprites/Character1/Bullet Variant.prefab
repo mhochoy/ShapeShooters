@@ -15,21 +15,29 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4718884745027570970, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718884745027570970, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -949308399
+      objectReference: {fileID: 0}
     - target: {fileID: 6412573969874162522, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6412573969874162522, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2219557
+      value: 1.2867193
       objectReference: {fileID: 0}
     - target: {fileID: 6412573969874162522, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2219557
+      value: 1.2867193
       objectReference: {fileID: 0}
     - target: {fileID: 6412573969874162522, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2219557
+      value: 1.2867193
       objectReference: {fileID: 0}
     - target: {fileID: 6412573969874162522, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,10 +79,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: health
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: HitEffectObj
+      value: 
+      objectReference: {fileID: 3150363289457295362, guid: 6ef9c062492a54b6f9d7759b88265899, type: 3}
     - target: {fileID: 8898641202882675173, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8898641202882675173, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: ExplosionEffect
+      value: 
+      objectReference: {fileID: 3150363289457295362, guid: 6ef9c062492a54b6f9d7759b88265899, type: 3}
     - target: {fileID: 8898641202882675173, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: HitSounds.Array.size
       value: 2
@@ -261,7 +281,7 @@ MonoBehaviour:
   m_DefaultVelocity: {x: 0, y: -0.25, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   m_IgnoreTag: 
   m_UseImpactDirection: 1
   m_ScaleImpactWithMass: 0

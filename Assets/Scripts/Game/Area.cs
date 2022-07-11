@@ -9,9 +9,11 @@ public class Area : MonoBehaviour
     public GameObject Door;
     Animator _DoorAnimator;
     List<GameObject> defeated_enemies = new List<GameObject>();
+    AudioSource _Audio;
     // Start is called before the first frame update
     void Start()
     {
+        _Audio = GetComponent<AudioSource>();
         _DoorAnimator = Door.GetComponentInChildren<Animator>();
     }
 
@@ -31,6 +33,7 @@ public class Area : MonoBehaviour
         if (!_DoorAnimator.GetBool("open")) {
             _DoorAnimator.SetBool("open", true);
             _DoorAnimator.Play("DoorOpen");
+            _Audio.Play();
             cleared = true;
         }
     }

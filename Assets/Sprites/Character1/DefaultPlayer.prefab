@@ -190,6 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d310c3e19501c046a050ce538749904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 0
   speed: 10
 --- !u!58 &148541207835626832
 CircleCollider2D:
@@ -519,16 +521,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: draw
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: weapon
       value: 
       objectReference: {fileID: 148541209038764491}
     - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
-      propertyPath: ShieldObject
+      propertyPath: DrawObject
       value: 
       objectReference: {fileID: 3307504811397143085, guid: 72c2e869ed0c0e8459b4798842a0bff5, type: 3}
+    - target: {fileID: 8945930619894634618, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
+      propertyPath: ShieldObject
+      value: 
+      objectReference: {fileID: 148541207859154462}
     - target: {fileID: 8945930619894634619, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -582,5 +588,10 @@ PrefabInstance:
 --- !u!4 &148541207774726143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8945930619894634619, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
+  m_PrefabInstance: {fileID: 9091058943575695236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &148541207859154462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8945930620077625754, guid: 903000a3ba98dbb41bb3e976b0296663, type: 3}
   m_PrefabInstance: {fileID: 9091058943575695236}
   m_PrefabAsset: {fileID: 0}

@@ -30,8 +30,6 @@ public class Movement : MonoBehaviour
 
     public void Move(float x, float y) {
         Vector2 movement = new Vector2(x, y);
-
-        
     }
 
     public void Move() {

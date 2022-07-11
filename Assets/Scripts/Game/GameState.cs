@@ -11,27 +11,38 @@ public class GameState : MonoBehaviour
     public List<Prize> prizes;
     public CinemachineVirtualCamera camera;
     public TextMeshProUGUI LevelStatus;
+    public GameObject MainPlayer;
 
     void Update()
     {
+        
         bool PrizesAreCollected = prizes.TrueForAll( ( Prize prize ) => { return prize.collected; } );
         bool AreasIsCleared = areas.TrueForAll( ( Area area ) => { return area.cleared; } );
-        bool LevelIsCleared = PrizesAreCollected && AreasIsCleared; 
+        bool LevelIsCleared = PrizesAreCollected && AreasIsCleared;
 
-        if (LevelIsCleared) {
+        HandleLevelStatus(LevelIsCleared);
+
+        try {
+
+            MainPlayer = GameObject.FindGameObjectsWithTag("Player")[0];
+            camera.m_Follow = MainPlayer.transform;
+            
+        }
+        catch (IndexOutOfRangeException) {
+
+            Debug.Log("No Player Found.");
+
+        }
+
+    }
+
+    void HandleLevelStatus(bool levelIsCleared) {
+        if (levelIsCleared) {
             // End Level
             LevelStatus.enabled = true;
-            Debug.Log("Level has been cleared!");
         }
         else {
             LevelStatus.enabled = false;
-        }
-        try {
-            GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
-            camera.m_Follow = player.transform;
-        }
-        catch (IndexOutOfRangeException) {
-            Debug.Log("No Player Found.");
         }
     }
 }

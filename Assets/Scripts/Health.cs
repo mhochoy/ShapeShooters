@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
     public int health;
     public bool isDrawing;
+    public bool Indestructable;
     [SerializeField] GameObject HitEffectObj;
     [SerializeField] GameObject DeathEffectObj;
     ParticleSystem HitEffect;
@@ -20,7 +21,14 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Give(int val) {
+        health += val;
+    }
+
     public void Damage(int val) {
+        if (Indestructable) {
+            return;
+        }
         if (health - val > 0) {
             health -= val;
         }
@@ -30,6 +38,10 @@ public class Health : MonoBehaviour
     }
 
     public void Damage(int val, Vector2 point) {
+        if (Indestructable) {
+            SpawnHitEffect(point);
+            return;
+        }
         if (health - val > 0) {
             SpawnHitEffect(point);
             health -= val;
@@ -39,7 +51,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void SpawnHitEffect(Vector2 hit_point) {
+    public void SpawnHitEffect(Vector2 hit_point) {
         if (HitEffect) {
             HitEffect.transform.position = hit_point;
             HitEffect.transform.rotation = Quaternion.identity;

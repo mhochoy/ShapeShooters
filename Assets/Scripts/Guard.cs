@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Guard : MonoBehaviour
 {
     public GameObject ShieldObject;
+    public GameObject DrawObject;
     [SerializeField] private bool draw;
     [SerializeField] private GameObject weapon;
 
@@ -35,13 +36,11 @@ public class Guard : MonoBehaviour
     }
 
     void Draw() {
-        ShieldObject.SetActive(true);
         weapon.SetActive(false);
-        GameObject shape = Instantiate(ShieldObject, weapon.transform.position, weapon.transform.rotation);
+        GameObject shape = Instantiate(DrawObject, weapon.transform.position, weapon.transform.rotation);
     }
 
     void KillDraw() {
-        ShieldObject.SetActive(false);
         weapon.SetActive(true);
     }
 }

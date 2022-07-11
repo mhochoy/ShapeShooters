@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject ExplosionEffect;
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] List<AudioClip> HitSounds;
@@ -44,6 +45,10 @@ public class Bullet : MonoBehaviour
         }
         else {
             Disable();
+        }
+
+        if (ExplosionEffect) {
+            GameObject explosion = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
         }
     }
 
