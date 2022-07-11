@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Cinemachine;
+using TMPro;
 
 public class GameState : MonoBehaviour
 {
     public List<Area> areas;
     public List<Prize> prizes;
     public CinemachineVirtualCamera camera;
+    public TextMeshProUGUI LevelStatus;
 
     void Update()
     {
@@ -18,7 +20,11 @@ public class GameState : MonoBehaviour
 
         if (LevelIsCleared) {
             // End Level
+            LevelStatus.enabled = true;
             Debug.Log("Level has been cleared!");
+        }
+        else {
+            LevelStatus.enabled = false;
         }
         try {
             GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
