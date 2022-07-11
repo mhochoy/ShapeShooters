@@ -110,7 +110,9 @@ public class Player : MonoBehaviour
             else {
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
-            movement.Move(_movement.x, _movement.y);
+            //movement.Move(_movement.x, _movement.y);
+            movement.x = _movement.x;
+            movement.y = _movement.y;
         }
     }
 

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public float x;
+    public float y;
     Transform player;
     [Range(0,50)]
     [SerializeField] private float speed;
@@ -15,8 +17,12 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
+    void FixedUpdate() {
         GameObject _player = GameObject.FindGameObjectWithTag("Player");
+        Vector2 movement = new Vector2(x, y);
+
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
         if (_player && player == null) {
             player = _player.transform;
         }
@@ -25,7 +31,7 @@ public class Movement : MonoBehaviour
     public void Move(float x, float y) {
         Vector2 movement = new Vector2(x, y);
 
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        
     }
 
     public void Move() {
