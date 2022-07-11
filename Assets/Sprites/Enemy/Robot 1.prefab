@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   isDrawing: 0
+  Indestructible: 0
   HitEffectObj: {fileID: 1813607469735044454}
   DeathEffectObj: {fileID: 5037161872661044929, guid: 2694d130fe4c54f71ada11b7735c3865, type: 3}
 --- !u!114 &2114141516
@@ -179,7 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d310c3e19501c046a050ce538749904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.48
+  x: 0
+  y: 0
+  speed: 1.8
 --- !u!1 &8104226413101707766
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Auto: 0
-  AI: 1
   fireRate: 0.78
   Bullet: {fileID: 7053449912322589718, guid: 3aa34a51814e4e144a4f151569dad337, type: 3}
   FirePoint: {fileID: 8104226414044565210}

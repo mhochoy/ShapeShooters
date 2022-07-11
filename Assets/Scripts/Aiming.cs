@@ -10,10 +10,6 @@ public class Aiming : MonoBehaviour
     [SerializeField] private Transform pivot;
     [SerializeField] private float LockOnDistance;
 
-    void Start() {
-        
-    }
-
     void Update() {
         GameObject _player = GameObject.FindGameObjectWithTag("Player");
         if (_player) {
@@ -44,13 +40,5 @@ public class Aiming : MonoBehaviour
         else {
             return false;
         }
-    }
-
-    public float GetLockOnDistance() {
-        return LockOnDistance;
-    }
-
-    public float GetDistanceFromPlayer() {
-        return Vector2.Distance(transform.position, player.position);
     }
 }

@@ -20,10 +20,11 @@ public class Movement : MonoBehaviour
     void FixedUpdate() {
         GameObject _player = GameObject.FindGameObjectWithTag("Player");
         Vector2 movement = new Vector2(x, y);
+        bool WeFoundAPlayerButItHasntBeenSetYet = _player && player == null;
 
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
 
-        if (_player && player == null) {
+        if (WeFoundAPlayerButItHasntBeenSetYet) {
             player = _player.transform;
         }
     }

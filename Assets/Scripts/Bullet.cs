@@ -24,18 +24,18 @@ public class Bullet : MonoBehaviour
         TryGetComponent<Health>(out health);
     }
 
-    void Update() {
-    }
-
     void OnCollisionEnter2D(Collision2D col) {
         Health _health;
         Bullet _bullet;
-        string collision_tag = col.gameObject.tag;
+        string collision_tag = col.transform.tag;
         col.gameObject.TryGetComponent<Health>(out _health);
         col.gameObject.TryGetComponent<Bullet>(out _bullet);
 
         if (_health) {
-            bool DisableConditionsAreMet = health.health < _health.health || col.transform.tag == "Player" || col.transform.tag == "DefenseBlock";
+            bool BulletIsLessPowerful = health.health < _health.health;
+            bool BulletIsHittingAPlayer = collision_tag == "Player";
+            bool BulletIsHittingADrawBlock = collision_tag == "DefenseBlock";
+            bool DisableConditionsAreMet = BulletIsLessPowerful || BulletIsHittingAPlayer || BulletIsHittingADrawBlock;
             PlayRandomHitSound();
             _health.Damage(damage, col.GetContact(0).point);
             if (DisableConditionsAreMet) {
