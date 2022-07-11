@@ -12,11 +12,9 @@ public class Bullet : MonoBehaviour
     CircleCollider2D Collider;
     Rigidbody2D rb;
     AudioSource _Audio;
-    GameObject shakeObj;
     Health health;
     void Start()
     {
-        shakeObj = Camera.main.gameObject;
         Sprite = GetComponent<SpriteRenderer>();
         Collider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -41,7 +39,6 @@ public class Bullet : MonoBehaviour
             if (DisableConditionsAreMet) {
                 Disable();
             }
-            shakeObj.SendMessage("TriggerShake");
         }
         else {
             Disable();
