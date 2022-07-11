@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     public int health;
     public bool isDrawing;
-    public bool Indestructable;
+    public bool Indestructible;
     [SerializeField] GameObject HitEffectObj;
     [SerializeField] GameObject DeathEffectObj;
     ParticleSystem HitEffect;
@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
     }
 
     public void Damage(int val) {
-        if (Indestructable) {
+        if (Indestructible) {
             return;
         }
         if (health - val > 0) {
@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
     }
 
     public void Damage(int val, Vector2 point) {
-        if (Indestructable) {
+        if (Indestructible) {
             SpawnHitEffect(point);
             return;
         }

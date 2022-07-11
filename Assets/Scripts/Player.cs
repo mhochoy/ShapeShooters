@@ -48,17 +48,7 @@ public class Player : MonoBehaviour
         bool PlayerIsUsingRawInput = !AI && input.enabled;
         bool PlayerIsUsingInputManager = !AI && !input.enabled;
         if (tag == "Player") {
-            bool LookingLeft = aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00;
-            bool LookingRight = aiming.transform.rotation.z < 0.00f && aiming.transform.rotation.z > -180.00f;
-            if (LookingLeft) {
-                aiming.transform.localScale = new Vector2(-1, 1);
-            }
-            else if (LookingRight) {
-                aiming.transform.localScale = new Vector2(1, 1);
-            }
-            else {
-                // Nothing
-            }
+            HandleAimLook();
         }
         if (PlayerIsUsingInputManager) {
             if (shoot) {
@@ -74,14 +64,14 @@ public class Player : MonoBehaviour
         if (PlayerIsUsingRawInput) {
             var _movement = input.MoveAction.ReadValue<Vector2>();
             var _look = input.LookAction.ReadValue<Vector2>();
+            bool WeaponIsSemiAutomatic = input.FireAction.WasPressedThisFrame() && !weapon.Auto;
+            bool WeaponIsAutomatic = input.FireAction.IsPressed() && weapon.Auto;
             // Move + Look
             Move(_movement);
             Look(_look);
             // Blocking
             guard.Block(input.BlockAction.IsPressed());
             // Firing
-            bool WeaponIsSemiAutomatic = input.FireAction.WasPressedThisFrame() && !weapon.Auto;
-            bool WeaponIsAutomatic = input.FireAction.IsPressed() && weapon.Auto;
             if (WeaponIsSemiAutomatic) {
                 weapon.FireBullet();
             }
@@ -106,9 +96,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    void HandleAimLook() {
+        bool LookingLeft = aiming.transform.rotation.z > 0.00f && aiming.transform.rotation.z < 180.00;
+        bool LookingRight = aiming.transform.rotation.z < 0.00f && aiming.transform.rotation.z > -180.00f;
+        if (LookingLeft) {
+            aiming.transform.localScale = new Vector2(-1, 1);
+        }
+        else if (LookingRight) {
+            aiming.transform.localScale = new Vector2(1, 1);
+        }
+        else {
+            // Nothing
+        }
+    }
+
     public void Move(InputAction.CallbackContext context) {
         var _movement = context.ReadValue<Vector2>();
-        if (movement) {
+        if (MoveScriptLoaded()) {
             bool ThereIsNoInput = (_movement.x == 0f && _movement.y == 0f);
             if (ThereIsNoInput) {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -123,7 +127,7 @@ public class Player : MonoBehaviour
 
     public void Move(Vector2 _movement) 
     {
-        if (movement) {
+        if (MoveScriptLoaded()) {
             movement.x = _movement.x;
             movement.y = _movement.y;
         }
@@ -131,28 +135,42 @@ public class Player : MonoBehaviour
     }
 
     public void Move() {
-        if (movement) {
+        if (MoveScriptLoaded()) {
             movement.Move();
         }
     }
 
     public void Look(InputAction.CallbackContext context) {
         var _look = context.ReadValue<Vector2>();
-        if (aiming) {
+        if (AimingScriptLoaded()) {
             aiming.Aim(_look.x, _look.y);
         }
     }
 
     public void Look(Vector2 _look) {
-        if (aiming) {
+        if (AimingScriptLoaded()) {
             aiming.Aim(_look.x, _look.y);
         }
     }
 
     public void Look() {
-        if (aiming) {
+        if (AimingScriptLoaded()) {
             aiming.Aim();
         }
+    }
+
+    bool MoveScriptLoaded() {
+        if (!movement) {
+            return false;
+        }
+        return true;
+    }
+
+    bool AimingScriptLoaded() {
+        if (!aiming) {
+            return false;
+        }
+        return true;
     }
 
     public void Fire(InputAction.CallbackContext context) {

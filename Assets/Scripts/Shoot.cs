@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class Shoot : MonoBehaviour
 {
     public bool Auto;
-    public bool AI;
     [SerializeField] float fireRate;
     [SerializeField] GameObject Bullet;
     [SerializeField] Transform FirePoint;
@@ -42,9 +41,5 @@ public class Shoot : MonoBehaviour
 
     public Vector2 GetFirePoint() {
         return FirePoint.position;
-    }
-
-    public Vector2 GetFireDirection() {
-        return FirePoint.forward;
     }
 }
