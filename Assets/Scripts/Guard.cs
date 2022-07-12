@@ -26,8 +26,8 @@ public class Guard : MonoBehaviour
     }
 
     void SpawnShield() {
-        ShieldObject.SetActive(true);
         weapon.SetActive(false);
+        ShieldObject.SetActive(true);
     }
 
     void StopShield() {
