@@ -81,7 +81,7 @@ MonoBehaviour:
   fireRate: 1
   Bullet: {fileID: 8030896727554041950, guid: ac81f608faaacf74489de995775baffc, type: 3}
   FirePoint: {fileID: 1036512638105085882}
-  speed: 5
+  speed: 5000
 --- !u!1 &1036512637962283432
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ Transform:
   m_GameObject: {fileID: 1036512638884593209}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 9.11, y: 6.57, z: 0}
-  m_LocalScale: {x: 1.6983, y: 1.6983, z: 1.6983}
+  m_LocalScale: {x: 1.6983001, y: 1.6983001, z: 1.6983}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1036512637962283433}

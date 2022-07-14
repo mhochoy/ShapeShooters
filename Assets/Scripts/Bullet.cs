@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     AudioSource _Audio;
     Health health;
+    float original_volume;
+    float original_pitch;
     void Start()
     {
         Sprite = GetComponent<SpriteRenderer>();
@@ -22,6 +24,8 @@ public class Bullet : MonoBehaviour
         }
         rb = GetComponent<Rigidbody2D>();
         _Audio = GetComponent<AudioSource>();
+        original_volume = _Audio.volume;
+        original_pitch = _Audio.pitch;
         TryGetComponent<Health>(out health);
     }
 
@@ -29,16 +33,19 @@ public class Bullet : MonoBehaviour
         Health _health;
         Bullet _bullet;
         SpriteRenderer _renderer;
+        Rigidbody2D _rb;
         string collision_tag = col.transform.tag;
         col.gameObject.TryGetComponent<Health>(out _health);
         col.gameObject.TryGetComponent<Bullet>(out _bullet);
         col.gameObject.TryGetComponent<SpriteRenderer>(out _renderer);
+        col.gameObject.TryGetComponent<Rigidbody2D>(out _rb);
 
         if (_health) {
             bool BulletIsLessPowerful = health.health < _health.health;
             bool BulletIsHittingAPlayer = collision_tag == "Player";
             bool BulletIsHittingADrawBlock = collision_tag == "DefenseBlock";
-            bool DisableConditionsAreMet = BulletIsLessPowerful || BulletIsHittingAPlayer || BulletIsHittingADrawBlock;
+            bool BulletIsLessHeavy = rb.mass <= _rb.mass;
+            bool DisableConditionsAreMet = BulletIsLessPowerful || BulletIsHittingAPlayer || BulletIsHittingADrawBlock || BulletIsLessHeavy;
             PlayRandomHitSound();
             _health.Damage(damage, col.GetContact(0).point);
             if (_renderer) {
@@ -69,6 +76,8 @@ public class Bullet : MonoBehaviour
     void PlayRandomHitSound() {
         int decision = Random.Range(0, HitSounds.Count);
         _Audio.clip = HitSounds[decision];
+        _Audio.pitch = Random.Range(original_pitch, original_pitch + .25f);
+        _Audio.volume = Random.Range(original_volume-.075f, original_volume+.25f);
         _Audio.Play();
     }
 }

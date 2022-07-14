@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1679316495476523010, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4718884745027570970, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -69,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: health
-      value: 25
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7237019517186597741, guid: b1ffb3182749cfe47993d3860863258a, type: 3}
       propertyPath: HitEffectObj
