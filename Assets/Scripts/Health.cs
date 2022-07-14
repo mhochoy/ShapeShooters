@@ -7,16 +7,18 @@ public class Health : MonoBehaviour
     public int health;
     public bool isDrawing;
     public bool Indestructible;
+    public SpriteRenderer Renderer;
     public Color HitColor;
     [SerializeField] GameObject HitEffectObj;
     [SerializeField] GameObject DeathEffectObj;
     ParticleSystem HitEffect;
     ParticleSystem DeathEffect;
-    SpriteRenderer Renderer;
     Color originalColor;
 
     void Start() {
-        TryGetComponent<SpriteRenderer>(out Renderer);
+        if (!Renderer) {
+            TryGetComponent<SpriteRenderer>(out Renderer);
+        }
         originalColor = Renderer.color;
         if (HitEffectObj) {
             HitEffectObj.TryGetComponent<ParticleSystem>(out HitEffect);
@@ -35,7 +37,7 @@ public class Health : MonoBehaviour
             return;
         }
         if (health - val > 0) {
-            StartCoroutine(DamageEffectSequence(Renderer, HitColor, .1f, 0));
+            //StartCoroutine(DamageEffectSequence(Renderer, HitColor, .1f, 0));
             health -= val;
         }
         else {
@@ -46,6 +48,15 @@ public class Health : MonoBehaviour
     public void Damage(int val, Vector2 point) {
         Damage(val);
         SpawnHitEffect(point);
+    }
+
+    public void FlashDamage(SpriteRenderer renderer) {
+        if (Renderer) {
+            StartCoroutine(DamageEffectSequence(Renderer, HitColor, .1f, 0));
+        }
+        else {
+            StartCoroutine(DamageEffectSequence(renderer, HitColor, .1f, 0));
+        }
     }
 
     public void SpawnHitEffect(Vector2 hit_point) {

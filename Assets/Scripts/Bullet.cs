@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] List<AudioClip> HitSounds;
     SpriteRenderer Sprite;
-    CircleCollider2D Collider;
+    Collider2D Collider;
     Rigidbody2D rb;
     AudioSource _Audio;
     Health health;
@@ -17,6 +17,9 @@ public class Bullet : MonoBehaviour
     {
         Sprite = GetComponent<SpriteRenderer>();
         Collider = GetComponent<CircleCollider2D>();
+        if (!Collider) {
+            Collider = GetComponent<BoxCollider2D>();
+        }
         rb = GetComponent<Rigidbody2D>();
         _Audio = GetComponent<AudioSource>();
         TryGetComponent<Health>(out health);
@@ -25,9 +28,11 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col) {
         Health _health;
         Bullet _bullet;
+        SpriteRenderer _renderer;
         string collision_tag = col.transform.tag;
         col.gameObject.TryGetComponent<Health>(out _health);
         col.gameObject.TryGetComponent<Bullet>(out _bullet);
+        col.gameObject.TryGetComponent<SpriteRenderer>(out _renderer);
 
         if (_health) {
             bool BulletIsLessPowerful = health.health < _health.health;
@@ -36,6 +41,12 @@ public class Bullet : MonoBehaviour
             bool DisableConditionsAreMet = BulletIsLessPowerful || BulletIsHittingAPlayer || BulletIsHittingADrawBlock;
             PlayRandomHitSound();
             _health.Damage(damage, col.GetContact(0).point);
+            if (_renderer) {
+                _health.FlashDamage(_renderer);
+            }
+            else {
+                _health.FlashDamage(_health.Renderer);
+            }
             if (DisableConditionsAreMet) {
                 Disable();
             }
