@@ -101,7 +101,7 @@
                 {
                     "name": "WASD",
                     "id": "8a4a8cc9-49d2-4235-8baf-1b54acaeda83",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -221,11 +221,33 @@
                 },
                 {
                     "name": "",
+                    "id": "610cdd51-558f-4a9d-9ca0-90ff15bc0436",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f99e2d9d-8e91-4656-a743-d16265b4ff35",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "General",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fb39125-c499-4001-a6c7-b671b8ba71dc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
