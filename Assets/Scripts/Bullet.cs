@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Bullet : MonoBehaviour
 {
     public GameObject ExplosionEffect;
+    public float ImpulseStrength;
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] List<AudioClip> HitSounds;
+    CinemachineImpulseSource Impulse;
     SpriteRenderer Sprite;
     Collider2D Collider;
     Rigidbody2D rb;
@@ -15,18 +18,28 @@ public class Bullet : MonoBehaviour
     Health health;
     float original_volume;
     float original_pitch;
+
+    void Awake() {
+        _Audio = GetComponent<AudioSource>();
+        original_volume = _Audio.volume;
+        original_pitch = _Audio.pitch;
+        _Audio.pitch = Random.Range(original_pitch, original_pitch + .25f);
+        _Audio.volume = Random.Range(original_volume-.075f, original_volume+.25f);
+    }
+
     void Start()
     {
         Sprite = GetComponent<SpriteRenderer>();
-        Collider = GetComponent<CircleCollider2D>();
+        Collider = GetComponent<Collider2D>();
         if (!Collider) {
             Collider = GetComponent<BoxCollider2D>();
         }
         rb = GetComponent<Rigidbody2D>();
-        _Audio = GetComponent<AudioSource>();
-        original_volume = _Audio.volume;
-        original_pitch = _Audio.pitch;
         TryGetComponent<Health>(out health);
+        TryGetComponent<CinemachineImpulseSource>(out Impulse);
+        if (Impulse) {
+            Impulse.GenerateImpulse(transform.up * ImpulseStrength);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col) {
@@ -76,8 +89,6 @@ public class Bullet : MonoBehaviour
     void PlayRandomHitSound() {
         int decision = Random.Range(0, HitSounds.Count);
         _Audio.clip = HitSounds[decision];
-        _Audio.pitch = Random.Range(original_pitch, original_pitch + .25f);
-        _Audio.volume = Random.Range(original_volume-.075f, original_volume+.25f);
         _Audio.Play();
     }
 }

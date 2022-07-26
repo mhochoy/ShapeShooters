@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 831866807}
-  m_UpdateMethod: 1
+  m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -1900,7 +1900,6 @@ GameObject:
   - component: {fileID: 831866807}
   - component: {fileID: 831866806}
   - component: {fileID: 831866808}
-  - component: {fileID: 831866809}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1987,24 +1986,8 @@ MonoBehaviour:
   prizes:
   - {fileID: 436473330}
   NextScene: 
-  camera: {fileID: 1362711168}
   cameraTargets: {fileID: 111050786}
   LevelStatus: {fileID: 690658670}
-  _PlayerHistory: []
-  _EnemyHistory: []
---- !u!114 &831866809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831866805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3935fcdbe0074734ebe01525dc23f303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  areas: []
 --- !u!1 &852582707
 GameObject:
   m_ObjectHideFlags: 0

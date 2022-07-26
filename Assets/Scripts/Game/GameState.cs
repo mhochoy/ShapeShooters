@@ -73,7 +73,7 @@ public class GameState : MonoBehaviour
         foreach (Area area in areas) {
             foreach (GameObject enemy in area.enemies) {
                 if (!_EnemyHistory.Contains(enemy)) {
-                    cameraTargets.AddMember(enemy.transform, .3f, 1.5f);
+                    cameraTargets.AddMember(enemy.transform, .3f, 3f);
                     _EnemyHistory.Add(enemy);
                 }
                 Player _enemy;
