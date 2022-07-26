@@ -5,9 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Aiming : MonoBehaviour
 {
-    
     protected Transform player;
-    [SerializeField] private Transform pivot;
     [SerializeField] private float LockOnDistance;
 
     void Update() {

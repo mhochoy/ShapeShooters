@@ -17,10 +17,16 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     bool block;
     bool shoot;
-    float area_zoom;
+    CinemachineTargetGroup _targetGroup;
+    List<GameObject> _TargetHistory;
     // Start is called before the first frame update
     void Start()
     {
+        _targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
+
+        if (_targetGroup) {
+            _targetGroup.AddMember(transform, 1, 0);
+        }
         TryGetComponent<Health>(out health);
         TryGetComponent<PlayerInput>(out playerInput);
         TryGetComponent<InputManager>(out input);
@@ -48,6 +54,16 @@ public class Player : MonoBehaviour
         bool PlayerIsUsingRawInput = !AI && input.enabled;
         bool PlayerIsUsingInputManager = !AI && !input.enabled;
         if (tag == "Player") {
+            CinemachineTargetGroup _targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
+
+            if (_targetGroup) {
+                foreach (GameObject target in weapon.TargetHistory) {
+                    if (!_TargetHistory.Contains(target.gameObject)) {
+                        _TargetHistory.Add(target);
+                        _targetGroup.AddMember(target.transform, 1, 1);
+                    }
+                }
+            }
             HandleAimLook();
         }
         if (PlayerIsUsingInputManager) {
@@ -221,9 +237,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool IsLockedOntoTarget() {
+        if (aiming) {
+            return aiming.LockedOntoPlayer();
+        } else return false;
+    }
+
+    void DisableScripts() {
+        if (aiming) {aiming.enabled = false;}
+        if (movement) {movement.enabled = false;}
+        if (weapon) {weapon.enabled = false;}
+        if (guard) {guard.enabled = false;}
+        if (health) {health.enabled = false;}
+        this.enabled = false;
+        
+    }
+
     void OnDisable() {
         if (!AI) {
             playerInput.enabled = false;
         }
+        gameObject.SetActive(false);
     }
 }

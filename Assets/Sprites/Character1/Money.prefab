@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2359384777002834338}
   - component: {fileID: 4822986270042516670}
   - component: {fileID: -4160180858671577345}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Money
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   health: 0
   isDrawing: 0
   Indestructible: 0
+  Renderer: {fileID: 0}
   HitColor: {r: 0.9811321, g: 0.91868377, b: 0.763617, a: 1}
   HitEffectObj: {fileID: 3150363289457295362, guid: 6ef9c062492a54b6f9d7759b88265899, type: 3}
   DeathEffectObj: {fileID: 0}

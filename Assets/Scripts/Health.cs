@@ -81,7 +81,7 @@ public class Health : MonoBehaviour
             }
             return;
         }
-        gameObject.SetActive(false);
+        SendMessage("DisableScripts");
     }
 
     IEnumerator DamageEffectSequence(SpriteRenderer sr, Color dmgColor, float duration, float delay)

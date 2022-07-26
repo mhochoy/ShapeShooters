@@ -8,6 +8,8 @@ TagManager:
   - Area
   - Bullet
   - DefenseBlock
+  - Enemy
+  - Pass
   layers:
   - Default
   - TransparentFX

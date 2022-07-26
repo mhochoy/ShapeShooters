@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mad Robot Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8104226412885592995, guid: 7e803cd74db68f6448f7e61d0c97e705, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8104226412885593022, guid: 7e803cd74db68f6448f7e61d0c97e705, type: 3}
       propertyPath: m_RootOrder
       value: 0
