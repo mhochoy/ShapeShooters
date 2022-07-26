@@ -54,16 +54,6 @@ public class Player : MonoBehaviour
         bool PlayerIsUsingRawInput = !AI && input.enabled;
         bool PlayerIsUsingInputManager = !AI && !input.enabled;
         if (tag == "Player") {
-            CinemachineTargetGroup _targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
-
-            if (_targetGroup) {
-                foreach (GameObject target in weapon.TargetHistory) {
-                    if (!_TargetHistory.Contains(target.gameObject)) {
-                        _TargetHistory.Add(target);
-                        _targetGroup.AddMember(target.transform, 1, 1);
-                    }
-                }
-            }
             HandleAimLook();
         }
         if (PlayerIsUsingInputManager) {
