@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,17 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] float offset;
+    [SerializeField] GameObject[] players;
+    [SerializeField] Vector3 offset;
     [SerializeField] GameObject canvasObj;
     Canvas canvas;
     [SerializeField] GameObject HealthComponent;
-    Health _Health;
-    GameObject healthRef;
+    Dictionary<Player, Health> Healths = new Dictionary<Player, Health>();
+    Dictionary<GameObject, Player> healthBars = new Dictionary<GameObject, Player>();
 
     public void Start() {
         canvasObj = GameObject.FindGameObjectWithTag("Canvas");
         canvasObj.TryGetComponent<Canvas>(out canvas);
-        _Health = GetComponent<Health>();
-
-        healthRef = Instantiate(HealthComponent, canvasObj.transform);
     }
 
     public static Vector2 WorldToCanvasPoint(Vector3 worldPoint, Canvas _canvas) {
@@ -38,11 +37,46 @@ public class HealthUI : MonoBehaviour
 
 // This update loop will make a canvas element track a world transform
 public void Update() {
-    Slider _healthbar = healthRef.GetComponent<Slider>();
+        try {
+            players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players) {
+                Player ps = player.GetComponent<Player>(); // Player Script
+                Health health = player.GetComponent<Health>();
 
-    _healthbar.value = _Health.health;
-    if (HealthComponent != null) {
-        HealthComponent.transform.position = WorldToCanvasPoint(transform.position + Vector3.up*offset, canvas);
+                if (!Healths.ContainsKey(ps) && !Healths.ContainsValue(health)) {
+                    Healths.Add(ps, health);
+                }
+            }
+
+            foreach (Player p in Healths.Keys) {
+                if (!healthBars.ContainsValue(p)) {
+                    GameObject healthbar = Instantiate(HealthComponent, canvasObj.transform);
+                    healthBars.Add(healthbar, p);
+                }
+            }
+
+            foreach (GameObject bar in healthBars.Keys) {
+                Slider healthbar = bar.GetComponent<Slider>();
+                Player player;
+                Health health;
+
+                healthBars.TryGetValue(bar, out player);
+                Healths.TryGetValue(player, out health);
+                
+                if (!health.dead) {
+                    bar.transform.position = WorldToCanvasPoint(player.transform.position + offset, canvas);
+                    healthbar.value = health ? health.health : 0f;
+                }
+                else {
+                    bar.SetActive(false);
+                    Healths.Remove(player);
+                    healthBars.Remove(bar);
+                }
+                
+            }
+        }
+        catch (InvalidOperationException exception) {
+            Debug.Log($"Exception Caught: {exception.Message}");
+        }
     }
-}
 }

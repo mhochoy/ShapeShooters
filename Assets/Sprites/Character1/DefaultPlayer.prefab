@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 333264827}
   - component: {fileID: 333264830}
   - component: {fileID: 333264829}
-  - component: {fileID: 333264828}
   m_Layer: 2
   m_Name: Circle
   m_TagString: Player
@@ -102,19 +101,6 @@ CircleCollider2D:
   m_Offset: {x: -0.000000007450581, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &333264828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333264826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4904cefbdbdea1a4c9ca730986c91d45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 148541207835626861}
 --- !u!1 &148541207821569682
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b3f9f035209bd43a307ac4d89ce2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pivot: {fileID: 148541208883603609}
   LockOnDistance: 0
 --- !u!50 &148541207821569680
 Rigidbody2D:
@@ -201,7 +186,6 @@ GameObject:
   - component: {fileID: 431089646}
   - component: {fileID: 431089647}
   - component: {fileID: 431089653}
-  - component: {fileID: 7030257107869873361}
   m_Layer: 0
   m_Name: DefaultPlayer
   m_TagString: Player
@@ -504,21 +488,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!114 &7030257107869873361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148541207835626833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6a120740f2445dc80d47f53329820f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0.5
-  canvasObj: {fileID: 0}
-  HealthComponent: {fileID: 1710075747684128400, guid: 2bb07dbcc49fd4754b0b1f1cf3496860, type: 3}
 --- !u!1 &148541208883603610
 GameObject:
   m_ObjectHideFlags: 0
