@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] List<AudioClip> HitSounds;
+    Vector3 startingRotation;
     CinemachineImpulseSource Impulse;
     SpriteRenderer Sprite;
     Collider2D Collider;
@@ -21,10 +22,20 @@ public class Bullet : MonoBehaviour
 
     void Awake() {
         _Audio = GetComponent<AudioSource>();
+        startingRotation = transform.rotation.eulerAngles;
         original_volume = _Audio.volume;
         original_pitch = _Audio.pitch;
         _Audio.pitch = Random.Range(original_pitch, original_pitch + .25f);
         _Audio.volume = Random.Range(original_volume-.075f, original_volume+.25f);
+    }
+
+    void Update() {
+        if (startingRotation == transform.rotation.eulerAngles) {
+            // Good
+        }
+        else { // If the bullet is spinning out
+            gameObject.SetActive(false);
+        }
     }
 
     void Start()
@@ -59,12 +70,13 @@ public class Bullet : MonoBehaviour
             bool BulletIsHittingADrawBlock = collision_tag == "DefenseBlock";
             bool BulletIsLessHeavy = rb.mass <= _rb.mass;
             bool DisableConditionsAreMet = BulletIsLessPowerful || BulletIsHittingAPlayer || BulletIsHittingADrawBlock || BulletIsLessHeavy;
+
             PlayRandomHitSound();
             _health.Damage(damage, col.GetContact(0).point);
             if (_renderer) {
                 _health.FlashDamage(_renderer);
             }
-            else {
+            if (!_renderer) {
                 _health.FlashDamage(_health.Renderer);
             }
             if (DisableConditionsAreMet) {

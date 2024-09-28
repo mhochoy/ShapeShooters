@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public bool Indestructible;
     public SpriteRenderer Renderer;
     public Color HitColor;
+    public bool dead;
     [SerializeField] GameObject HitEffectObj;
     [SerializeField] GameObject DeathEffectObj;
     ParticleSystem HitEffect;
@@ -51,6 +52,9 @@ public class Health : MonoBehaviour
     }
 
     public void FlashDamage(SpriteRenderer renderer) {
+        if (!gameObject.activeInHierarchy) {
+            return;
+        }
         if (Renderer) {
             StartCoroutine(DamageEffectSequence(Renderer, HitColor, .1f, 0));
         }
@@ -81,6 +85,7 @@ public class Health : MonoBehaviour
             }
             return;
         }
+        dead = true;
         SendMessage("DisableScripts");
     }
 
